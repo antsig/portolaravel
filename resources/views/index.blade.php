@@ -46,8 +46,12 @@
             <div class="flex justify-between items-center h-16">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                        {{ $settings['site_logo_text'] ?? 'Brand.' }}
+                    <a href="#" class="text-2xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent flex items-center gap-2">
+                        @if(isset($settings['site_logo_image']) && $settings['site_logo_image'])
+                            <img src="{{ asset('storage/' . $settings['site_logo_image']) }}" alt="Logo" class="h-8 w-auto object-contain">
+                        @else
+                            {{ $settings['site_logo_text'] ?? 'Brand.' }}
+                        @endif
                     </a>
                 </div>
 
@@ -92,9 +96,15 @@
         <label for="mobile-drawer-checkbox" aria-label="close sidebar" class="custom-drawer-overlay"></label>
         <nav class="flex flex-col p-6 w-80 min-h-full bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 border-r border-slate-200 dark:border-slate-900 shadow-2xl relative pointer-events-auto">
             <div class="mb-8 flex items-center justify-between">
-                <span class="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-                    {{ $settings['site_logo_text'] ?? 'Brand.' }}
-                </span>
+                <a href="#" class="flex items-center gap-2">
+                    @if(isset($settings['site_logo_image']) && $settings['site_logo_image'])
+                        <img src="{{ asset('storage/' . $settings['site_logo_image']) }}" alt="Logo" class="h-8 w-auto object-contain">
+                    @else
+                        <span class="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+                            {{ $settings['site_logo_text'] ?? 'Brand.' }}
+                        </span>
+                    @endif
+                </a>
                 <label for="mobile-drawer-checkbox" class="p-1 rounded-md text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-900 cursor-pointer">
                     <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
                 </label>
@@ -217,11 +227,15 @@
                 <!-- Two Column Details Card -->
                 <div class="flex flex-col lg:flex-row bg-slate-50 dark:bg-slate-950 rounded-3xl overflow-hidden shadow-xl border border-slate-200/50 dark:border-slate-900/80 p-6 sm:p-8 lg:p-8 gap-6 sm:gap-8 items-center">
                     <!-- Left: Large Logo Placeholder or Avatar -->
-                    <div class="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden shrink-0 relative bg-slate-900 flex items-center justify-center shadow-lg border border-slate-100 dark:border-slate-800">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-primary to-accent opacity-20 blur-lg animate-pulse"></div>
-                        <svg class="w-16 h-16 text-primary relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                        </svg>
+                    <div class="w-40 h-40 sm:w-48 sm:h-48 rounded-3xl overflow-hidden shrink-0 relative bg-white dark:bg-slate-900 flex items-center justify-center shadow-lg border border-slate-200/50 dark:border-slate-800 group">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-primary to-accent opacity-15 blur-lg group-hover:opacity-25 transition-opacity"></div>
+                        @if(isset($settings['company_logo']) && $settings['company_logo'])
+                            <img src="{{ asset('storage/' . $settings['company_logo']) }}" alt="Company Logo" class="w-full h-full object-contain p-6 relative z-10 filter brightness-95 group-hover:scale-105 transition-transform duration-500">
+                        @else
+                            <svg class="w-16 h-16 text-primary relative z-10 group-hover:scale-110 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                            </svg>
+                        @endif
                     </div>
 
                     <!-- Right: Info Panel -->
@@ -417,10 +431,16 @@
                         </div>
                         
                         <div class="flex items-center gap-4 pt-2">
-                            <!-- Glowing Initial Avatar -->
-                            <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-primary to-accent text-white flex items-center justify-center text-xl font-bold shadow-lg shadow-primary/20 shrink-0">
-                                {{ substr($settings['developer_name'] ?? 'B', 0, 1) }}
-                            </div>
+                            @if(isset($settings['developer_image']) && $settings['developer_image'])
+                                <div class="w-14 h-14 rounded-full ring-2 ring-primary/80 ring-offset-2 ring-offset-slate-50 dark:ring-offset-slate-900 overflow-hidden shrink-0 shadow-lg group">
+                                    <img src="{{ asset('storage/' . $settings['developer_image']) }}" alt="{{ $settings['developer_name'] ?? 'Developer' }}" class="w-full h-full object-cover hover:scale-110 transition-transform duration-300">
+                                </div>
+                            @else
+                                <!-- Glowing Initial Avatar -->
+                                <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-primary to-accent text-white flex items-center justify-center text-xl font-bold shadow-lg shadow-primary/20 shrink-0">
+                                    {{ substr($settings['developer_name'] ?? 'B', 0, 1) }}
+                                </div>
+                            @endif
                             <div>
                                 <h4 class="text-lg font-bold text-slate-800 dark:text-white leading-tight">{{ $settings['developer_name'] ?? 'Budi Santoso' }}</h4>
                                 <p class="text-xs text-primary font-semibold uppercase tracking-wider mt-0.5">Lead Full-Stack Developer</p>

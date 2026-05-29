@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Settings\Tables;
 
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
@@ -15,6 +16,10 @@ class SettingsTable
         return $table
             ->columns([
                 TextColumn::make('key')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('value')
+                    ->limit(50)
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()
@@ -30,6 +35,7 @@ class SettingsTable
             ])
             ->recordActions([
                 EditAction::make(),
+                DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

@@ -7,7 +7,6 @@ use App\Models\Project;
 use App\Models\Setting;
 use App\Models\Skill;
 use App\Models\User;
-use App\Models\Venture;
 use Illuminate\Database\Seeder;
 use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Hash;
@@ -86,18 +85,6 @@ class DatabaseSeeder extends Seeder
                 'color' => $skill['color'],
                 'proficiency' => rand(70, 100),
                 'order' => $index + 1,
-            ]);
-        }
-
-        // 5. Seed Ventures
-        for ($i = 1; $i <= 4; $i++) {
-            Venture::create([
-                'title' => $faker->company,
-                'role' => $faker->jobTitle,
-                'description' => $faker->paragraph,
-                'image' => 'https://via.placeholder.com/150?text=Venture+' . $i,
-                'link' => $faker->url,
-                'order' => $i,
             ]);
         }
 

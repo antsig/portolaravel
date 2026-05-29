@@ -11,24 +11,40 @@ class SettingForm
 {
     public static function configure(Schema $schema): Schema
     {
+        // Safely resolve the current setting record
+        $record = null;
+        if (method_exists($schema, 'getRecord')) {
+            $record = $schema->getRecord();
+        }
+
+        if (!$record) {
+            $routeRecord = request()->route('record');
+            if ($routeRecord instanceof \App\Models\Setting) {
+                $record = $routeRecord;
+            } elseif ($routeRecord) {
+                $record = \App\Models\Setting::find($routeRecord);
+            }
+        }
+
+        $key = $record?->key;
+        $isImage = in_array($key, ['hero_image', 'site_logo_image', 'developer_image', 'company_logo']);
+
+        // Dynamically choose between FileUpload and Textarea to prevent Livewire state overriding conflicts
+        $valueComponent = $isImage
+            ? FileUpload::make('value')
+                ->image()
+                ->directory('settings')
+                ->columnSpanFull()
+            : Textarea::make('value')
+                ->columnSpanFull();
+
         return $schema
             ->components([
                 TextInput::make('key')
                     ->required()
                     ->disabled(fn ($record) => $record !== null),
                 
-                // Dynamic FileUpload for image settings
-                FileUpload::make('value')
-                    ->image()
-                    ->directory('settings')
-                    ->visible(fn ($get) => in_array($get('key'), ['hero_image', 'site_logo_image']))
-                    ->columnSpanFull(),
-
-                // Standard Textarea for general text settings
-                Textarea::make('value')
-                    ->default(null)
-                    ->hidden(fn ($get) => in_array($get('key'), ['hero_image', 'site_logo_image']))
-                    ->columnSpanFull(),
+                $valueComponent,
             ]);
     }
 }
