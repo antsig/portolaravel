@@ -1,0 +1,52 @@
+@import 'tailwindcss';
+
+@variant dark (&:where(.dark, .dark *));
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: 'Outfit', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+
+    /* Custom Theme Colors styled after Porto */
+    --color-primary: #6366f1; /* Indigo */
+    --color-secondary: #ec4899; /* Pink */
+    --color-accent: #06b6d4; /* Cyan */
+}
+
+/* Custom Drawer Sidebar (Mobile menu from Porto) */
+.custom-drawer-side {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+.drawer-toggle:checked ~ .custom-drawer-side {
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+.custom-drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+}
+
+.drawer-toggle:checked ~ .custom-drawer-side .custom-drawer-overlay {
+    opacity: 1;
+    pointer-events: auto;
+}
+
