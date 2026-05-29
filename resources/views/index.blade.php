@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth scroll-pt-24">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="scroll-smooth scroll-pt-16">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -123,25 +123,28 @@
         </div>
 
         <!-- 🚀 Home Section (Hero with Typing Animation) -->
-        <section id="home" class="py-20 sm:py-28 lg:py-32 relative">
+        <section id="home" class="min-h-[90vh] lg:min-h-[92vh] pt-6 sm:pt-10 lg:pt-12 pb-12 relative flex flex-col justify-start">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10">
                 <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
                     <!-- Text Side -->
-                    <div class="flex-1 space-y-6 text-left max-w-3xl">
+                    <div class="flex-1 text-left max-w-3xl">
                         <!-- Pulsing Subtitle -->
                         @if(isset($settings['hero_subtitle']))
-                        <div class="inline-flex items-center space-x-2 px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs font-bold tracking-wider uppercase animate-pulse">
+                        <div class="inline-flex items-center space-x-2 px-3 py-1.5 bg-primary/10 dark:bg-primary/20 text-primary rounded-full text-xs font-bold tracking-wider uppercase animate-pulse mb-4">
                             <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
                             <span>{{ $settings['hero_subtitle'] }}</span>
                         </div>
                         @endif
 
-                        <!-- Main Typing Title -->
-                        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight leading-none text-slate-900 dark:text-white">
-                            Architecting <br>
-                            <span id="hero-typing" class="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent"></span>
-                            <span class="text-primary animate-pulse">|</span>
+                        <!-- Main Title (Static) -->
+                        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-none mb-2">
+                            Architecting
                         </h1>
+                        <!-- Typing Wrapper (Fixed Height to prevent Layout Shifting) -->
+                        <div class="h-10 sm:h-12 lg:h-14 flex items-center mb-6 overflow-hidden">
+                            <span id="hero-typing" class="text-2xl sm:text-3xl lg:text-4xl font-extrabold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent leading-none"></span>
+                            <span class="text-primary animate-pulse text-2xl sm:text-3xl lg:text-4xl leading-none">|</span>
+                        </div>
 
                         <!-- Typist Effect Engine -->
                         <script>
@@ -169,12 +172,12 @@
                         </script>
 
                         <!-- Description -->
-                        <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed">
+                        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-xl leading-relaxed mb-6">
                             {{ $settings['hero_description'] ?? 'Kami mendesain, membangun, dan menskalakan produk digital kelas dunia yang memberdayakan bisnis Anda untuk memimpin di era digital.' }}
                         </p>
 
                         <!-- CTA Actions -->
-                        <div class="flex flex-wrap gap-4 pt-4">
+                        <div class="flex flex-wrap gap-4">
                             <a href="#about" class="px-7 py-3.5 bg-primary hover:bg-primary/95 text-white rounded-full font-semibold transition-all transform hover:-translate-y-0.5 shadow-lg shadow-primary/30 hover:shadow-primary/50">
                                 Tentang Kami
                             </a>
@@ -203,20 +206,20 @@
         </section>
 
         <!-- 🏢 About Section (Company Profile with Focus Areas) -->
-        <section id="about" class="py-16 sm:py-20 bg-white dark:bg-slate-950/40 border-y border-slate-200/30 dark:border-slate-900/50">
+        <section id="about" class="pt-8 sm:pt-10 pb-16 sm:pb-20 bg-white dark:bg-slate-950/40 border-y border-slate-200/30 dark:border-slate-900/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <!-- Heading aligned with Porto styling -->
-                <div class="text-center mb-16">
+                <div class="text-center mb-8">
                     <h2 class="text-primary font-bold tracking-wider uppercase text-xs">Tentang Kami</h2>
                     <h3 class="text-4xl font-extrabold mt-2 text-slate-800 dark:text-white">Company Profile</h3>
                 </div>
 
                 <!-- Two Column Details Card -->
-                <div class="flex flex-col lg:flex-row bg-slate-50 dark:bg-slate-950 rounded-3xl overflow-hidden shadow-xl border border-slate-200/50 dark:border-slate-900/80 p-6 sm:p-8 lg:p-10 gap-10 items-center">
+                <div class="flex flex-col lg:flex-row bg-slate-50 dark:bg-slate-950 rounded-3xl overflow-hidden shadow-xl border border-slate-200/50 dark:border-slate-900/80 p-6 sm:p-8 lg:p-8 gap-6 sm:gap-8 items-center">
                     <!-- Left: Large Logo Placeholder or Avatar -->
-                    <div class="w-full lg:w-1/3 aspect-square rounded-2xl overflow-hidden shrink-0 relative bg-slate-900 flex items-center justify-center shadow-lg border border-slate-100 dark:border-slate-800">
+                    <div class="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl overflow-hidden shrink-0 relative bg-slate-900 flex items-center justify-center shadow-lg border border-slate-100 dark:border-slate-800">
                         <div class="absolute inset-0 bg-gradient-to-tr from-primary to-accent opacity-20 blur-lg animate-pulse"></div>
-                        <svg class="w-24 h-24 text-primary relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-16 h-16 text-primary relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                         </svg>
                     </div>
@@ -309,7 +312,7 @@
 
         <!-- 💻 Skills Section (Core Technologies) -->
         @if($skills->count() > 0)
-        <section id="skills" class="py-16 sm:py-20">
+        <section id="skills" class="pt-10 sm:pt-14 pb-16 sm:pb-20">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
                     <h2 class="text-primary font-bold tracking-wider uppercase text-xs">Core Technologies</h2>
@@ -353,7 +356,7 @@
 
         <!-- 🎨 Projects Section (Portfolio Grid) -->
         @if($projects->count() > 0)
-        <section id="projects" class="py-16 sm:py-20 bg-white dark:bg-slate-950/40 border-y border-slate-200/30 dark:border-slate-900/50">
+        <section id="projects" class="pt-10 sm:pt-14 pb-16 sm:pb-20 bg-white dark:bg-slate-950/40 border-y border-slate-200/30 dark:border-slate-900/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
                     <h2 class="text-primary font-bold tracking-wider uppercase text-xs">Portofolio</h2>
@@ -400,80 +403,55 @@
         </section>
         @endif
 
-        <!-- 🚀 Ventures Section (Corporates) -->
-        @if($ventures->count() > 0)
-        <section id="ventures" class="py-16 sm:py-20">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-primary font-bold tracking-wider uppercase text-xs">Venture Hub</h2>
-                    <h3 class="text-4xl font-extrabold mt-2 text-slate-800 dark:text-white">Startup Ventures & Companies</h3>
-                </div>
-
-                <div class="space-y-8">
-                    @foreach($ventures as $venture)
-                    <div class="flex flex-col md:flex-row bg-white dark:bg-slate-950 rounded-3xl overflow-hidden shadow-xl border border-slate-200/50 dark:border-slate-900/80 p-6 sm:p-8 gap-8 items-center hover:border-primary/20 transition-all duration-300">
-                        <!-- Image Column -->
-                        <div class="w-full md:w-1/3 aspect-video md:aspect-square rounded-2xl overflow-hidden shrink-0 border border-slate-200/30 dark:border-slate-900/60 bg-slate-50 dark:bg-slate-900">
-                            <img src="{{ $venture->image ? (str_starts_with($venture->image, 'http') ? $venture->image : asset('storage/'.$venture->image)) : 'https://images.unsplash.com/photo-1556761175-5973dc0f32d7?auto=format&fit=crop&w=600&q=80' }}" alt="{{ $venture->title }}" class="w-full h-full object-cover">
-                        </div>
-
-                        <!-- Content Column -->
-                        <div class="flex-grow space-y-4">
-                            <div class="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider">
-                                {{ $venture->role ?? 'Founder' }}
-                            </div>
-                            <h4 class="text-2xl font-bold text-slate-800 dark:text-slate-100 leading-tight">
-                                {{ $venture->title }}
-                            </h4>
-                            <p class="text-slate-500 dark:text-slate-400 text-sm leading-relaxed text-justify">
-                                {{ $venture->description }}
-                            </p>
-                            
-                            @if($venture->link)
-                            <div class="pt-2">
-                                <a href="{{ $venture->link }}" target="_blank" class="px-5 py-2.5 bg-slate-950 hover:bg-slate-900 dark:bg-white dark:hover:bg-slate-100 text-white dark:text-slate-950 rounded-full text-xs font-semibold transition-transform transform hover:-translate-y-0.5 inline-flex items-center shadow-md">
-                                    <span>Visit Company</span>
-                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                                    </svg>
-                                </a>
-                            </div>
-                            @endif
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-            </div>
-        </section>
-        @endif
 
         <!-- 📧 Contact Section (Get in Touch with Social Connect Card) -->
-        <section id="contact" class="py-16 sm:py-20 bg-white dark:bg-slate-950/40 border-t border-slate-200/30 dark:border-slate-900/50">
+        <section id="contact" class="pt-10 sm:pt-14 pb-16 sm:pb-20 bg-white dark:bg-slate-950/40 border-t border-slate-200/30 dark:border-slate-900/50">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto w-full items-center">
                     
-                    <!-- Left: Description and Text -->
-                    <div class="text-center md:text-left space-y-6">
-                        <h2 class="text-primary font-bold tracking-wider uppercase text-xs">Hubungi Kami</h2>
-                        <h3 class="text-4xl sm:text-5xl font-extrabold text-slate-800 dark:text-white leading-tight">Get In Touch</h3>
-                        <p class="text-slate-500 dark:text-slate-400 text-base sm:text-lg leading-relaxed max-w-md mx-auto md:mx-0">
-                            Silakan hubungi kami untuk mendiskusikan proyek teknologi Anda, kolaborasi kemitraan, atau konsultasi kebutuhan digital.
-                        </p>
+                    <!-- Left Column: Developer Profile Card (Redesigned) -->
+                    <div class="bg-slate-50 dark:bg-slate-900/40 border border-slate-200/50 dark:border-slate-900 rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl shadow-slate-100/50 dark:shadow-none hover:border-primary/20 transition-all duration-300">
+                        <div class="space-y-1">
+                            <h2 class="text-primary font-bold tracking-wider uppercase text-xs mb-1">Hubungi Kami</h2>
+                            <h3 class="text-2xl font-extrabold text-slate-800 dark:text-white leading-tight">Developer Profile</h3>
+                        </div>
                         
-                        <div class="pt-4 space-y-3.5">
-                            <div class="flex items-center gap-3 justify-center md:justify-start">
-                                <div class="p-2.5 bg-primary/10 text-primary rounded-xl">
+                        <div class="flex items-center gap-4 pt-2">
+                            <!-- Glowing Initial Avatar -->
+                            <div class="w-14 h-14 rounded-full bg-gradient-to-tr from-primary to-accent text-white flex items-center justify-center text-xl font-bold shadow-lg shadow-primary/20 shrink-0">
+                                {{ substr($settings['developer_name'] ?? 'B', 0, 1) }}
+                            </div>
+                            <div>
+                                <h4 class="text-lg font-bold text-slate-800 dark:text-white leading-tight">{{ $settings['developer_name'] ?? 'Budi Santoso' }}</h4>
+                                <p class="text-xs text-primary font-semibold uppercase tracking-wider mt-0.5">Lead Full-Stack Developer</p>
+                            </div>
+                        </div>
+                        
+                        <hr class="border-slate-200/60 dark:border-slate-850" />
+                        
+                        <div class="space-y-2">
+                            <h5 class="text-[10px] uppercase tracking-widest text-slate-400 dark:text-slate-500 font-bold">Tentang Pengembang</h5>
+                            <p class="text-slate-600 dark:text-slate-400 leading-relaxed text-sm text-justify">
+                                {{ $settings['developer_bio'] ?? 'Budi Santoso adalah Lead Full-Stack Developer berpengalaman yang merancang dan membangun ekosistem digital untuk startup dan korporasi.' }}
+                            </p>
+                        </div>
+                        
+                        <hr class="border-slate-200/60 dark:border-slate-850" />
+                        
+                        <div class="space-y-3.5 pt-1">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-primary/10 text-primary rounded-xl shrink-0">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                                 </div>
-                                <a href="mailto:{{ $settings['contact_email'] ?? 'info@globaltech.com' }}" class="text-sm font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">
+                                <a href="mailto:{{ $settings['contact_email'] ?? 'info@globaltech.com' }}" class="text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-primary transition-colors">
                                     {{ $settings['contact_email'] ?? 'info@globaltech.com' }}
                                 </a>
                             </div>
-                            <div class="flex items-center gap-3 justify-center md:justify-start">
-                                <div class="p-2.5 bg-primary/10 text-primary rounded-xl">
+                            <div class="flex items-center gap-3">
+                                <div class="p-2 bg-primary/10 text-primary rounded-xl shrink-0">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                 </div>
-                                <span class="text-sm font-semibold text-slate-600 dark:text-slate-300 leading-normal">
+                                <span class="text-xs font-semibold text-slate-600 dark:text-slate-300 leading-normal">
                                     {{ $settings['company_address'] ?? 'Jakarta, Indonesia' }}
                                 </span>
                             </div>
