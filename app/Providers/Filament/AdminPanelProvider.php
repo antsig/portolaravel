@@ -29,8 +29,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName(fn () => \App\Models\Setting::where('key', 'site_logo_text')->value('value') ?? \App\Models\Setting::where('key', 'site_name')->value('value') ?? 'GlobalTech')
-            ->brandLogo(fn () => \App\Models\Setting::where('key', 'site_logo_image')->value('value') ? asset('storage/' . ltrim(\App\Models\Setting::where('key', 'site_logo_image')->value('value'), '/')) : null)
-            ->brandLogoHeight('2rem')
+            ->brandLogo(fn () => view('filament.logo')->render())
             ->colors([
                 'primary' => Color::Indigo,
                 'gray' => Color::Slate,

@@ -193,7 +193,7 @@
                             </a>
 
                             @if(isset($settings['developer_cv']) && $settings['developer_cv'])
-                            <a href="{{ asset('storage/' . ltrim($settings['developer_cv'], '/')) }}" download class="px-7 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full font-semibold transition-all transform hover:-translate-y-0.5 shadow-lg shadow-emerald-600/30 hover:shadow-emerald-600/50 flex items-center gap-2">
+                            <a href="{{ route('download-cv') }}" class="px-7 py-3.5 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full font-semibold transition-all transform hover:-translate-y-0.5 shadow-lg shadow-emerald-600/30 hover:shadow-emerald-600/50 flex items-center gap-2">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                                 <span>Unduh CV</span>
                             </a>
