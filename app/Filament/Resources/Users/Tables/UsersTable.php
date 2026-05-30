@@ -1,29 +1,23 @@
 <?php
 
-namespace App\Filament\Resources\Settings\Tables;
+namespace App\Filament\Resources\Users\Tables;
 
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteAction;
-use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class SettingsTable
+class UsersTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('key')
-                    ->label('Nama Pengaturan')
+                TextColumn::make('name')
                     ->searchable()
-                    ->sortable()
-                    ->formatStateUsing(fn ($state) => \App\Filament\Resources\Settings\Schemas\SettingForm::getLabel($state)),
-                TextColumn::make('value')
-                    ->label('Nilai Pengaturan')
-                    ->limit(50)
-                    ->searchable(),
+                    ->sortable(),
+                TextColumn::make('email')
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -38,12 +32,9 @@ class SettingsTable
             ])
             ->recordActions([
                 EditAction::make(),
-                DeleteAction::make(),
             ])
             ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                //
             ]);
     }
 }
